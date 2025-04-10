@@ -15,7 +15,7 @@ async def start_handler(
 ):
     try:
         user = await user_service.register_user(
-            user_id=message.from_user.id,
+            id=message.from_user.id,
             username=message.from_user.username,
             first_name=message.from_user.first_name,
             last_name=message.from_user.last_name
