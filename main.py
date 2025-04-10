@@ -21,7 +21,7 @@ async def main():
     @dp.error()
     async def error_handler(event: ErrorEvent):
         logger.critical(
-            f"Global error: {event.exception.__class__.__name__}: {event.exception}"
+            f"Глобальная ошибка: {event.exception.__class__.__name__}: {event.exception}"
         )
         try:
             await event.update.message.answer(
@@ -37,16 +37,16 @@ async def main():
             try:
                 return await handler(event, data)
             except Exception as e:
-                logger.error(f"Middleware error: {e}")
+                logger.error(f"Ошибка middleware: {e}")
                 raise
 
     dp.include_router(common.router)
 
     try:
-        logger.info("Starting bot...")
+        logger.info("Запуск бота...")
         await dp.start_polling(bot)
     except Exception as e:
-        logger.critical(f"Bot crashed: {e}")
+        logger.critical(f"Бот остановлен: {e}")
     finally:
         await bot.session.close()
 
